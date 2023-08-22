@@ -20,6 +20,7 @@ pepsi3.addEventListener('click',()=>{
 
 bars.addEventListener('click',()=>{
     primaryNav.classList.toggle('active')
+    document.body.classList.toggle('hidden')
     if(bars.classList.contains('fa-bars')){
         bars.classList.replace('fa-bars','fa-times')
     }
