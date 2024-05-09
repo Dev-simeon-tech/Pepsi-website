@@ -2,9 +2,8 @@ const pepsi1 = document.querySelector('.pepsi-1')
 const pepsi2 = document.querySelector('.pepsi-2')
 const pepsi3 = document.querySelector('.pepsi-3')
 const mainImg = document.querySelector('.main-img')
-const bars = document.querySelector('.fa-bars')
-const primaryNav = document.querySelector('.nav-links')
 
+// changing background color and main img
 pepsi1.addEventListener('click',()=>{
     document.body.style.backgroundColor = '#0062be'
     mainImg.src = 'images/pepsi001.png'
@@ -18,14 +17,26 @@ pepsi3.addEventListener('click',()=>{
     mainImg.src = 'images/pepsi003.png'
 })
 
-bars.addEventListener('click',()=>{
-    primaryNav.classList.toggle('active')
-    document.body.classList.toggle('hidden')
-    if(bars.classList.contains('fa-bars')){
-        bars.classList.replace('fa-bars','fa-times')
-    }
-    else{
-        bars.classList.replace('fa-times','fa-bars')
+// displaying navigation
+const showMenu = (toggleId,navLinksId)=>{
+    const toggle = document.querySelector(toggleId);
+    const navLinks = document.querySelector(navLinksId);
 
-    }
-})
+    toggle.addEventListener('click',()=>{
+        const visibilty = navLinks.getAttribute('data-visible');
+        
+        if(visibilty === 'false'){
+            navLinks.setAttribute('data-visible',true);
+            toggle.classList.replace('fa-bars','fa-times')
+            toggle.setAttribute('aria-expanded',true);
+        }
+        else{
+            navLinks.setAttribute('data-visible',false); 
+            toggle.classList.replace('fa-times','fa-bars');
+            toggle.setAttribute('aria-expanded',false); 
+        }
+        document.body.classList.toggle('hidden');
+        
+    })
+}
+showMenu('.fas','.nav-links');
